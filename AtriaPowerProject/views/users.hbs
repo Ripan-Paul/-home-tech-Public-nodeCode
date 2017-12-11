@@ -1,0 +1,80 @@
+<html>
+  <head></head>
+  <body>
+<div> <strong style="color: red;"> Equipment Entities</strong></div>
+
+<div>
+     <p style="font-weight: bold;">Equipment Name : </p>
+       <select>
+         {{# each products }}
+         {{# each this }}
+         <option>{{ this.equipment }}</option>
+         {{/each}}
+         {{/each}}
+       </select>
+     
+     <p style="font-weight: bold;">End Time :</p>
+       <select>
+         {{# each products }}
+         {{# each this }}
+         <option>{{ this.endTime }}</option>
+         {{/each}}
+         {{/each}}
+       </select>
+       <p style="font-weight: bold;">Start Time :</p>
+       <select>
+         {{# each products }}
+         {{# each this }}
+         
+         <option>{{ this.startTime }}</option>
+          {{/each}}    
+         {{/each}}
+       </select>
+       </div>
+       {{# each products }}
+       {{# each this }}
+       <div><p style="font-weight: bold;">{{this.equipment }} - Id : </p>{{this._id}}</div>
+       {{/each}}
+    {{/each}}
+  <div class="ct-chart ct-perfect-fourth"></div>
+  
+  </body>
+  
+  <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+<script>
+  
+  var data = {
+  // A labels array that can contain any sort of values
+  labels: ['12:00', '03:00', '06:00', '09:00', '12:00'],
+  // Our series array that contains series objects or in this case series data arrays
+  //[15, 22, 4, 2, 0]
+  
+  series: [
+    [
+    {{# each products }}
+     {{# each this }}
+    
+    {{ this.kwh}},
+    {{/each}}
+    {{/each}}
+  ]
+    
+  ]
+  
+};
+
+// Create a new line chart object where as first parameter we pass in a selector
+// that is resolving to our chart container element. The Second parameter
+// is the actual data object.
+new Chartist.Bar('.ct-chart', data);
+
+  
+</script>
+
+<script>
+
+  Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
+</script>
+

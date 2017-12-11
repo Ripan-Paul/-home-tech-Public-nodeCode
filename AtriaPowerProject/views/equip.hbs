@@ -1,0 +1,45 @@
+<html>
+  <head></head>
+  <body>
+<div> <strong style="color:chartreuse;"> Equipment Entities</strong></div>
+
+        <div>Equipment Name: {{# each products }} {{ this.equipment }}{{/each}}</div>
+                <div>End Time : {{# each products }} {{ this.endTime }}{{/each}}</div>
+                <div>StartTime : {{# each products }} {{ this.startTime }}{{/each}}</div>
+            
+
+        
+
+
+  <div class="ct-chart ct-perfect-fourth"></div>
+  
+  </body>
+  
+  <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+<script>
+  
+  var data = {
+  // A labels array that can contain any sort of values
+  labels: ['12:00', '03:00', '06:00', '09:00', '12:00'],
+  // Our series array that contains series objects or in this case series data arrays
+  //[15, 22, 4, 2, 0]
+  
+  series: [
+    [
+    
+    {{# each products }}{{ this.kwh}},{{/each}}
+  ]
+    
+  ]
+  
+};
+
+// Create a new line chart object where as first parameter we pass in a selector
+// that is resolving to our chart container element. The Second parameter
+// is the actual data object.
+new Chartist.Bar('.ct-chart', data);
+
+  
+</script>
+
+

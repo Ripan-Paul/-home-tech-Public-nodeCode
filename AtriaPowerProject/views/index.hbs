@@ -1,0 +1,19 @@
+<html>
+  <head></head>
+  <body>
+<div> <strong style="color:blue;"> Equipment Entities</strong></div>
+
+<div>
+     <p style="font-weight: bold;">Equipment Name : </p>
+       <select>
+         {{# each products }}
+         {{# each this }}
+         <option>{{ this.equipment }}</option>
+         {{/each}}
+         {{/each}}
+       </select>
+    
+    
+  
+  </body>
+  
